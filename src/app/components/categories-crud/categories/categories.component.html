@@ -1,7 +1,30 @@
-<div>
-  <ul>
-    <li *ngFor="let category of categories">
-      {{category.name}}
-    </li>
-  </ul>
-</div>
+<table class="table table-striped ml-3 mt-3">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th>Delete</th>
+    <th>Update</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let category of categories; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>
+      {{category.id}}
+    </td>
+    <td>
+      {{ category.name }}
+    </td>
+    <td>
+      <button type="button" (click)="onDelete(category.id)" class="btn btn-danger">Delete</button>
+    </td>
+    <td>
+      <button type="button" [routerLink]="['/update-category/', category.id]" routerLinkActive="router-link-active"  class="btn btn-danger">Update</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-info ml-3" [routerLink]="['/add-category']" >Add new category</button>
